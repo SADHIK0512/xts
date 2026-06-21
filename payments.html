@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Support | Xeta Tech Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                            950: '#0b132b', // Deep professional dark
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #f1f5f9; /* slate-100 */
+        }
+        
+        /* Premium custom select arrow */
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+
+        /* Input auto-fill styling override for a clean look */
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 30px #f8fafc inset !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 sm:px-6 lg:px-8 flex items-center justify-center font-sans">
+
+    <!-- Main Container: Split Layout -->
+    <div class="max-w-5xl w-full bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col lg:flex-row overflow-hidden border border-slate-200">
+        
+        <!-- Left Sidebar (Brand & Info) -->
+        <div class="lg:w-2/5 bg-brand-950 p-10 text-white flex flex-col justify-between relative overflow-hidden">
+            <!-- Decorative background blob -->
+            <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-brand-600 opacity-20 blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 -ml-16 -mb-16 w-48 h-48 rounded-full bg-blue-400 opacity-20 blur-3xl"></div>
+
+            <div class="relative z-10">
+                <img 
+                    src="https://res.cloudinary.com/dpz44zf0z/image/upload/v1760704788/XETA_SOLUTIONS_LOGO_bcsbwh.png" 
+                    alt="Xeta Tech Solutions Logo" 
+                    class="h-12 object-contain mb-10"
+                    onerror="this.src='https://via.placeholder.com/200x60?text=Xeta+Tech+Solutions'"
+                >
+                <h2 class="text-3xl font-bold tracking-tight mb-4">Payment Support Center</h2>
+                <p class="text-slate-300 text-sm leading-relaxed mb-8">
+                    We apologize for any inconvenience. Please provide your transaction details, and our dedicated billing team will resolve your issue within 24-48 hours.
+                </p>
+
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <svg class="w-5 h-5 text-brand-500 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span class="text-sm text-slate-300">Secure & Encrypted Transmission</span>
+                    </div>
+                    <div class="flex items-start">
+                        <svg class="w-5 h-5 text-brand-500 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span class="text-sm text-slate-300">Priority Resolution Queue</span>
+                    </div>
+                    <div class="flex items-start">
+                        <svg class="w-5 h-5 text-brand-500 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <span class="text-sm text-slate-300">Email Updates on Ticket Status</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-slate-800 relative z-10 text-xs text-slate-400">
+                &copy; <script>document.write(new Date().getFullYear())</script> Xeta Tech Solutions. All rights reserved.
+            </div>
+        </div>
+
+        <!-- Right Sidebar (Form Area) -->
+        <div class="lg:w-3/5 p-8 sm:p-12 relative bg-white">
+            
+            <!-- Success Message (Hidden by default) -->
+            <div id="success-message" class="hidden h-full flex flex-col items-center justify-center text-center animate-fade-in">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-800 mb-2">Issue Reported Successfully</h3>
+                <p class="text-slate-500 max-w-md mx-auto mb-8">Your ticket has been created and our financial operations team is reviewing your transaction. You will receive an update via email shortly.</p>
+                <button onclick="resetForm()" class="text-brand-600 font-medium hover:text-brand-700 transition-colors">
+                    &larr; Submit another report
+                </button>
+            </div>
+
+            <!-- Active Form -->
+            <form id="payment-issue-form" class="space-y-6">
+                
+                <div class="pb-4 border-b border-slate-100 mb-6">
+                    <h3 class="text-xl font-semibold text-slate-800">Report Details</h3>
+                    <p class="text-sm text-slate-500 mt-1">Please fill out all required fields marked with an asterisk (*)</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                    <!-- Name -->
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-slate-700 mb-1.5">Full Name <span class="text-red-500">*</span></label>
+                        <input type="text" id="name" required placeholder="John Doe"
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-slate-800 bg-slate-50 focus:bg-white text-sm shadow-sm">
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-700 mb-1.5">Registered Email <span class="text-red-500">*</span></label>
+                        <input type="email" id="email" required placeholder="john@example.com"
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-slate-800 bg-slate-50 focus:bg-white text-sm shadow-sm">
+                    </div>
+
+                    <!-- Mobile -->
+                    <div>
+                        <label for="mobile" class="block text-sm font-medium text-slate-700 mb-1.5">Mobile Number <span class="text-red-500">*</span></label>
+                        <input type="tel" id="mobile" required placeholder="+91 9876543210"
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-slate-800 bg-slate-50 focus:bg-white text-sm shadow-sm">
+                    </div>
+
+                    <!-- Platform -->
+                    <div>
+                        <label for="platform" class="block text-sm font-medium text-slate-700 mb-1.5">Affected Platform <span class="text-red-500">*</span></label>
+                        <select id="platform" required
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-slate-800 bg-slate-50 focus:bg-white text-sm shadow-sm cursor-pointer">
+                            <option value="" disabled selected>Select a platform</option>
+                            <option value="Testify">Testify</option>
+                            <option value="DigiAdhyapak">DigiAdhyapak</option>
+                            <option value="Proctorix">Proctorix</option>
+                            <option value="Credex">Credex</option>
+                            <option value="IMS">IMS (Intern Management System)</option>
+                            <option value="Inview">Inview</option>
+                            <option value="ELTS">ELTS</option>
+                            <option value="Xeta Tech Labs">Xeta Tech Labs</option>
+                            <option value="Xeta E-Learn">Xeta E-Learn</option>
+                        </select>
+                    </div>
+
+                    <!-- Payment Method -->
+                    <div>
+                        <label for="payment_method" class="block text-sm font-medium text-slate-700 mb-1.5">Payment Via <span class="text-red-500">*</span></label>
+                        <select id="payment_method" required
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-slate-800 bg-slate-50 focus:bg-white text-sm shadow-sm cursor-pointer">
+                            <option value="" disabled selected>Select method</option>
+                            <option value="Google Pay (GPay)">Google Pay (GPay)</option>
+                            <option value="PhonePe">PhonePe</option>
+                            <option value="Paytm">Paytm</option>
+                            <option value="BHIM / Other UPI">BHIM / Other UPI Apps</option>
+                            <option value="Credit Card">Credit Card</option>
+                            <option value="Debit Card">Debit Card</option>
+                            <option value="Net Banking">Net Banking</option>
+                        </select>
+                    </div>
+
+                    <!-- Payment ID -->
+                    <div>
+                        <label for="payment_id" class="block text-sm font-medium text-slate-700 mb-1.5">Razorpay Payment ID <span class="text-red-500">*</span></label>
+                        <input type="text" id="payment_id" required placeholder="pay_XXXXXXXXXXXXXX"
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-slate-800 bg-slate-50 focus:bg-white text-sm shadow-sm font-mono">
+                    </div>
+                </div>
+
+                <!-- Issue Description -->
+                <div class="pt-2">
+                    <label for="issue_description" class="block text-sm font-medium text-slate-700 mb-1.5">Issue Description</label>
+                    <textarea id="issue_description" rows="3" placeholder="Please describe what went wrong (e.g., amount deducted but course not activated)..."
+                        class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-slate-800 bg-slate-50 focus:bg-white text-sm shadow-sm resize-none"></textarea>
+                </div>
+
+                <!-- Submit Area -->
+                <div class="pt-6 border-t border-slate-100 flex items-center justify-between">
+                    <p class="text-xs text-slate-500 flex items-center">
+                        <svg class="w-4 h-4 mr-1 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        Data is secured
+                    </p>
+                    <button type="submit" id="submit-btn"
+                        class="bg-brand-600 hover:bg-brand-700 text-white font-medium py-2.5 px-6 rounded-lg shadow-sm hover:shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-600 flex items-center">
+                        <span id="btn-text">Submit Ticket</span>
+                        <svg id="btn-icon" class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        <!-- Spinner (hidden by default) -->
+                        <svg id="btn-spinner" class="animate-spin ml-2 h-4 w-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('payment-issue-form');
+        const successMessage = document.getElementById('success-message');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnIcon = document.getElementById('btn-icon');
+        const btnSpinner = document.getElementById('btn-spinner');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent page reload
+            
+            // 1. Show Loading State
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            btnText.innerText = "Processing...";
+            btnIcon.classList.add('hidden');
+            btnSpinner.classList.remove('hidden');
+
+            // 2. Simulate network request (Here is where you'd put your custom backend logic later)
+            setTimeout(() => {
+                // Hide Form, Show Success
+                form.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+                
+                // Reset Button state for next time
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                btnText.innerText = "Submit Ticket";
+                btnIcon.classList.remove('hidden');
+                btnSpinner.classList.add('hidden');
+            }, 1200);
+        });
+
+        // Function to reset the form and go back to the beginning
+        function resetForm() {
+            form.reset();
+            successMessage.classList.add('hidden');
+            form.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
